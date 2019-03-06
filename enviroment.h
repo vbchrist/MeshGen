@@ -1,25 +1,27 @@
 #include <vector>
 
-class enviroment(){
+#include <CGAL/Simple_cartesian.h>
+#include <CGAL/Surface_mesh.h>
 
-typedef CGAL::Simple_cartesian<double> Kernel;
-typedef CGAL::Surface_mesh<Kernel::Point_3> Mesh;
+class enviroment
+{
+    typedef CGAL::Simple_cartesian<double> Kernel;
+    typedef CGAL::Surface_mesh<Kernel::Point_3> Mesh;
 
-public:
-    enviroment(Mesh bounding_geom):bounding_geom(bounding_geom_){};
-    bool add_internal_geom(){};
-private:
+  public:
+    enviroment(Mesh bounding_geom) : bounding_geom_(bounding_geom){};
+    bool add_internal_geom(Mesh internal_component)
+    {
+        bool intersect = CGAL::Polygon_mesh_processing::do_intersect(bounding_geom_, internal_component);
+        if (!intersect)
+        {
+            internal_components.emplace_back(internal_component);
+            return true;
+        }
+        return false;
+    };
+
+  private:
     Mesh bounding_geom_;
     std::vector<Mesh> internal_components;
 }
-
-
-
-Class Enviroment
-Methods 
-    Build from surface_mesh 
-    Add internal geometry
-        Mesh intersection detection
-Objects
-    surface_mesh        external surface
-vec<surface_mesh> list of internal objects defined by surface meshes
