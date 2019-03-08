@@ -1,4 +1,8 @@
+#include <CGAL/Simple_cartesian.h>
+
 class actor{
+
+    typedef CGAL::cpp11::array<double, 3> point;
     //Methods
     void modify_orientation(){};
     bool advance(){
@@ -15,5 +19,5 @@ class actor{
     //Objects
     point position;
     point orientation;
-    pattern line; 
+    //pattern line; 
 }

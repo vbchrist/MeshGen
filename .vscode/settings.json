@@ -47,6 +47,10 @@
         "tuple": "cpp",
         "typeindex": "cpp",
         "typeinfo": "cpp",
-        "utility": "cpp"
+        "utility": "cpp",
+        "cstdarg": "cpp",
+        "numeric": "cpp",
+        "condition_variable": "cpp",
+        "mutex": "cpp"
     }
 }
